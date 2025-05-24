@@ -46,7 +46,7 @@ public class LoginService {
                     )
             );
 
-            SecurityContextHolder.getContext().setAuthentication(authentication\);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
             String jwt = JwtUtil.generateToken((User) authentication.getPrincipal());
 
