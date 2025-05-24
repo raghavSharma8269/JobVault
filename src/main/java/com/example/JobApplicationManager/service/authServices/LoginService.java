@@ -15,6 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
+import javax.security.auth.login.LoginException;
+
 @Service
 public class LoginService {
     private final AuthenticationManager manager;
@@ -29,28 +31,32 @@ public class LoginService {
     public String authenticateAndGenerateToken(CustomUser userInput) {
         logger.info("Authenticating " + userInput.getEmail());
 
-        CustomUser userFromDb = userRepository.findById(userInput.getEmail())
-                .orElseThrow(() -> new EntityNotFoundException(ExceptionMessages.EMAIL_NOT_FOUND.getMessage()));
+        try {
+            CustomUser userFromDb = userRepository.findById(userInput.getEmail())
+                    .orElseThrow(() -> new EntityNotFoundException(ExceptionMessages.EMAIL_NOT_FOUND.getMessage()));
 
-//        if (!userFromDb.isEmailVerified()) {
-//            throw new EmailVerificationException(ExceptionMessages.EMAIL_NOT_VERIFIED.getMessage());
-//        }
+//            if (!userFromDb.isEmailVerified()) {
+//                throw new EmailVerificationException(ExceptionMessages.EMAIL_NOT_VERIFIED.getMessage());
+//            }
 
-        Authentication authentication = manager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        userInput.getEmail(),
-                        userInput.getPassword()
-                )
-        );
+            Authentication authentication = manager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            userInput.getEmail(),
+                            userInput.getPassword()
+                    )
+            );
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+            SecurityContextHolder.getContext().setAuthentication(authentication\);
 
-        String jwt = JwtUtil.generateToken((User) authentication.getPrincipal());
+            String jwt = JwtUtil.generateToken((User) authentication.getPrincipal());
 
-        userFromDb.setAuthToken(jwt);
-        userRepository.save(userFromDb);
+            userFromDb.setAuthToken(jwt);
+            userRepository.save(userFromDb);
 
-        return jwt;
+            return jwt;
+        }catch (Exception e){
+            throw new RuntimeException("Username or password is incorrect");
+        }
     }
 
 }

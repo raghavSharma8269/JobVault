@@ -29,8 +29,6 @@ const LoginModalComponent: React.FC<LoginModalComponentProps> = ({
         },
       );
 
-      console.log("Login Response: " + JSON.stringify(response, null, 2));
-
       const token = response.data;
 
       if (token) {
@@ -41,8 +39,11 @@ const LoginModalComponent: React.FC<LoginModalComponentProps> = ({
         setErrorMessage("Login failed. Invalid token.");
       }
     } catch (error: any) {
-      console.error(error);
-      setErrorMessage("Invalid credentials. Please try again.");
+      console.error("LOGIN ERROR" + error);
+      setErrorMessage(
+        JSON.stringify(error.response.data.message) ||
+          "Login failed. Please check your credentials.",
+      );
     }
   };
 
