@@ -1,5 +1,6 @@
 package com.example.JobApplicationManager.service.authServices;
 
+import com.example.JobApplicationManager.exceptions.EmailVerificationException;
 import com.example.JobApplicationManager.exceptions.ExceptionMessages;
 import com.example.JobApplicationManager.model.entity.CustomUser;
 import com.example.JobApplicationManager.model.repositories.UserRepository;
@@ -25,24 +26,31 @@ public class LoginService {
         this.userRepository = userRepository;
     }
 
-    public String authenticateAndGenerateToken(CustomUser user) {
+    public String authenticateAndGenerateToken(CustomUser userInput) {
+        logger.info("Authenticating " + userInput.getEmail());
 
-        logger.info("Executing " + getClass() + " ,authenticating " + user.getEmail());
+        CustomUser userFromDb = userRepository.findById(userInput.getEmail())
+                .orElseThrow(() -> new EntityNotFoundException(ExceptionMessages.EMAIL_NOT_FOUND.getMessage()));
 
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                user.getEmail(),
-                user.getPassword()
+//        if (!userFromDb.isEmailVerified()) {
+//            throw new EmailVerificationException(ExceptionMessages.EMAIL_NOT_VERIFIED.getMessage());
+//        }
+
+        Authentication authentication = manager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        userInput.getEmail(),
+                        userInput.getPassword()
+                )
         );
 
-        Authentication authentication = manager.authenticate(token);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = JwtUtil.generateToken((User) authentication.getPrincipal());
 
-        CustomUser authenticatedUser = userRepository.findById(user.getEmail()).orElseThrow(() -> new EntityNotFoundException(ExceptionMessages.EMAIL_NOT_FOUND.getMessage()));
-        authenticatedUser.setAuthToken(jwt);
-        userRepository.save(authenticatedUser);
+        userFromDb.setAuthToken(jwt);
+        userRepository.save(userFromDb);
 
         return jwt;
     }
+
 }

@@ -38,7 +38,7 @@ const LoginModalComponent: React.FC<LoginModalComponentProps> = ({
         closeModal(); // hide the modal
         navigate("/dashboard"); // redirect to dashboard page
       } else {
-        setErrorMessage("Login failed. Invalid token.");
+        setErrorMessage();
       }
     } catch (error: any) {
       console.error(error);

@@ -29,7 +29,8 @@ public enum ExceptionMessages {
     NOT_AUTHORIZED_TO_DELETE_USER("You are not authorized to delete this user"),
     PASSWORD_MISMATCH("Passwords do not match"),
     ORIGINAL_PASSWORD_IS_WRONG("Original password is incorrect"),
-    EMAIL_VERIFICATION_FAILED("Email verification failed");
+    EMAIL_VERIFICATION_FAILED("Email verification failed"),
+    EMAIL_NOT_VERIFIED("Email is not verified");
 
     private final String message;
     ExceptionMessages(String message) {
