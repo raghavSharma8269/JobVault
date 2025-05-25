@@ -28,7 +28,7 @@ const ContactPage: React.FC = () => {
       console.error("Error sending email:", error);
       alert(
         error?.response?.data?.message ||
-          "❌ Error sending email. Please try again.",
+          "❌ Error sending email. Please try again or send email to @raghavs2023@gmail.com.",
       );
     }
   };
