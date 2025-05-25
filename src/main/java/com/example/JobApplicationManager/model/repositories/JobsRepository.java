@@ -31,9 +31,4 @@ public interface JobsRepository extends JpaRepository<JobsList, String> { //Stri
             Sort sort
     );
 
-
-
-    @Query("SELECT query FROM JobsList query WHERE query.customUser.email = :email AND query.applicationStatus = :status")
-    List<JobsList> filterByStatus (@Param("email") String email, @Param("status")ApplicationStatus status);
-
 }
