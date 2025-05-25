@@ -40,7 +40,8 @@ const UpdateJobModalComponent: React.FC<Props> = ({ job }) => {
         jobLocation,
         jobSalary,
         favorite: job.favorite,
-        applicationStatus: job.applicationStatus,
+        applicationStatus:
+          job.applicationStatus === "none" ? null : job.applicationStatus,
       };
 
       await axios.put(`http://localhost:8080/api/jobs/${job.id}`, updatedJob, {
