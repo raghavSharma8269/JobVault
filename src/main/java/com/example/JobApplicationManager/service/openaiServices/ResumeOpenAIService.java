@@ -144,7 +144,7 @@ public class ResumeOpenAIService {
         userMessage.put("content", prompt);
         messages.add(userMessage);
 
-        // Prepare request body
+        // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("model", "gpt-4-turbo");
         requestBody.put("messages", messages);
