@@ -50,8 +50,6 @@ public class SecurityConfig {
                             "/api/auth/verify",
                             "/api/contact/**",
                             "/error"
-
-
                             )
 
                             .permitAll()
