@@ -43,7 +43,7 @@ const RegisterModalComponent: React.FC<RegisterModalComponentProps> = ({
       window.open("/verify", "_blank");
     } catch (error: any) {
       console.error(error);
-      setErrorMessage("Registration failed. Email may already be in use.");
+      setErrorMessage(error.response.data.message);
     }
   };
 
