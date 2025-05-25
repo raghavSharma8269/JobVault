@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/JobVaultLightPurple.svg";
+import logo from "../../public/JobVaultLightPurple.svg";
 import LoginModalComponent from "../components/LoginModalComponent";
 import RegisterModalComponent from "../components/RegisterModalComponent";
 import { useNavigate } from "react-router-dom";
