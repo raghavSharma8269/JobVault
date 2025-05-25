@@ -22,7 +22,7 @@ public class VerifyAccountService {
         this.userRepository = userRepository;
     }
 
-    public ResponseEntity<String> execute(String emailVerificationToken){
+    public ResponseEntity<Void> execute(String emailVerificationToken){
 
         logger.info("Verifying email verification token: " + emailVerificationToken);
 
@@ -32,10 +32,15 @@ public class VerifyAccountService {
             CustomUser customUser = optionalCustomUser.get();
             customUser.setEmailVerified(true);
             userRepository.save(customUser);
-            return ResponseEntity.ok("Successfully verified user");
-        }
-        else{
-            throw new EmailVerificationException(ExceptionMessages.EMAIL_VERIFICATION_FAILED.getMessage());
+            return ResponseEntity
+                    .status(302)
+                    .header("Location", "http://localhost:5173/verify-status?success=true")
+                    .build();        }
+        else {
+            return ResponseEntity
+                    .status(302)
+                    .header("Location", "http://localhost:5173/verify-status?success=false")
+                    .build();
         }
 
 

@@ -44,7 +44,7 @@ private final GetUserService getUserService;
 
 
     @GetMapping("/verify")
-    public ResponseEntity<String> verify(@RequestParam String emailVerificationToken) {
+    public ResponseEntity<Void> verify(@RequestParam String emailVerificationToken) {
         return verifyAccountService.execute(emailVerificationToken);
     }
 
