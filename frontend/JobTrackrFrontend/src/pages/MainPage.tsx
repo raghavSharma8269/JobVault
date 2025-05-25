@@ -2,6 +2,7 @@ import gearSvg from "../assets/gear.svg";
 import clipBoardSvg from "../assets/clipboard-check.svg";
 import SettingsPage from "./SettingsPage";
 import logOutSvg from "../assets/box-arrow-left.svg";
+import logo from "../assets/JobVaultLightPurple.svg";
 import questionMarkSvg from "../assets/question-circle.svg";
 import JobsPage from "./JobsPage";
 import { useState } from "react";
@@ -53,12 +54,19 @@ const MainPage = () => {
                     paddingBottom: "10px",
                   }}
                 >
-                  <span style={{ color: "#7400f0" }}>Job</span>Vault
+                  <img
+                    src={logo}
+                    alt="JobVault Logo"
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                    }}
+                  />
                 </h1>
               </div>
               {/* Jobs Button */}
               <button
-                className="btn mt-5 btn-lg d-flex align-items-center section-change-button"
+                className="btn mt-2 btn-lg d-flex align-items-center section-change-button"
                 style={{
                   color: "#c9c9c9",
                   backgroundColor:
