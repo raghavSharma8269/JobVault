@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/JobTrackr.png";
-import logo2 from "../assets/vectorized.svg";
+import logo from "../assets/JobVaultLightPurple.svg";
 import LoginModalComponent from "../components/LoginModalComponent";
 import RegisterModalComponent from "../components/RegisterModalComponent";
 import { useNavigate } from "react-router-dom";
 
 const WelcomePage: React.FC = () => {
-  //changes tab name
   useEffect(() => {
     document.title = "JobVault";
   }, []);
@@ -25,44 +23,71 @@ const WelcomePage: React.FC = () => {
   console.log("Rendering WelcomePage");
 
   return (
-    <div className="container-fluid vh-100 d-flex align-items-center">
+    <div className="container-fluid vh-100 d-flex align-items-center overflow-auto">
       <div className="row w-100">
-        {/* Left Section - Title (Dark Background: #1c1d26) */}
+        {/* Left Section - Logo and Info */}
         <div
           className="col-md-6 d-flex flex-column justify-content-start align-items-start text-white ps-5"
-          style={{ backgroundColor: "#1c1d26", height: "100vh" }}
+          style={{
+            backgroundColor: "#1c1d26",
+            height: "100vh",
+            paddingTop: "20px",
+            paddingBottom: "20px",
+          }}
         >
           <h1
-            className="display-4 mb-4 text-start fw-bold"
-            style={{ marginTop: "35px" }}
+            className="fw-light"
+            style={{ color: "#c9c9c9", marginTop: "10px" }}
           >
-            Welcome To <br /> <span style={{ color: "#7400f0" }}>Job</span>
-            Vault
+            Welcome to
           </h1>
-
           <img
             src={logo}
-            alt="Job Trackr Logo"
-            style={{ width: "500px", height: "500px", marginTop: "20px" }}
+            alt="JobVault Logo"
+            style={{
+              width: "100%",
+              maxWidth: "400px",
+              height: "auto",
+              marginTop: "10px",
+            }}
           />
+
+          <div className="mt-4 px-2" style={{ maxWidth: "500px" }}>
+            <h2 className="fw-bold" style={{ color: "#c9c9c9" }}>
+              Secure Your Future with JobVault
+            </h2>
+            <p
+              className="mt-3"
+              style={{
+                color: "#aaaaaa",
+                fontSize: "1.1rem",
+                lineHeight: "1.6",
+              }}
+            >
+              JobVault isn't just another job board. It's your personal hub for
+              tracking applications, storing resumes, and staying organized
+              throughout your job hunt — all in one secure place.
+            </p>
+            <p style={{ color: "#aaaaaa", fontSize: "1rem" }}>
+              No more scattered spreadsheets. No more missed deadlines. Just
+              clarity and confidence.
+            </p>
+          </div>
         </div>
 
-        {/* Right Section - Buttons (Light Dark Background: #292b38) */}
+        {/* Right Section - Buttons */}
         <div
           className="col-md-6 d-flex flex-column justify-content-center align-items-center"
           style={{ backgroundColor: "#292b38", height: "100vh" }}
         >
           <div
             className="d-flex flex-column justify-content-center align-items-center mb-4"
-            style={{ borderRadius: "0, 10px, 10px, 0", height: "100vh" }}
+            style={{ borderRadius: "0 10px 10px 0", height: "100vh" }}
           >
-            {/* Title Above Buttons */}
             <h1 className="display-4 text-white text-start mb-5 fw-bold">
               Begin Your <span style={{ color: "#7400f0" }}>Job</span> Hunt
             </h1>
-            {/* Buttons */}
 
-            {/* Register Button */}
             <button
               type="button"
               className="btn btn-lg mb-4 text-white"
@@ -72,16 +97,14 @@ const WelcomePage: React.FC = () => {
               Register
             </button>
 
-            {/* Login Button */}
             <button
               type="button"
               className="btn btn-secondary btn-lg"
-              onClick={openLoginModal} // This will open the modal when clicked
+              onClick={openLoginModal}
             >
               Login
             </button>
 
-            {/*Contact Us Button */}
             <button
               type="button"
               className="btn btn-secondary btn-lg mt-xxl-5"
@@ -93,7 +116,7 @@ const WelcomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Login Modal Component */}
+      {/* Modals */}
       <LoginModalComponent
         isVisible={isLoginModalVisible}
         closeModal={closeLoginModal}
