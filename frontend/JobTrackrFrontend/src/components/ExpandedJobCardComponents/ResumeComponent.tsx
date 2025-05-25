@@ -1,15 +1,27 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Job } from "../../types/Job.ts";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 
 interface ResumeComponentProps {
   job: Job;
+  resumeLoading: boolean;
+  setResumeLoading: Dispatch<SetStateAction<boolean>>;
 }
 
-const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
+const ResumeComponent: FC<ResumeComponentProps> = ({
+  job,
+  resumeLoading,
+  setResumeLoading,
+}) => {
   const [feedback, setFeedback] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
   const { user, loading: userLoading, refreshUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -27,7 +39,7 @@ const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
       return;
     }
 
-    setLoading(true);
+    setResumeLoading(true);
 
     try {
       const response = await axios.get(
@@ -39,12 +51,12 @@ const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
         },
       );
       setFeedback(response.data);
-      await refreshUser(); // update AI usage count after successful call
+      await refreshUser();
     } catch (error) {
       console.error("Error generating resume feedback:", error);
       alert("Failed to generate resume feedback");
     } finally {
-      setLoading(false);
+      setResumeLoading(false);
     }
   };
 
@@ -54,14 +66,36 @@ const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
         className="btn default-text-color"
         style={{ backgroundColor: "#7400f0", marginTop: "15px" }}
         onClick={handleGenerateResumeFeedback}
-        disabled={loading}
+        disabled={resumeLoading}
       >
-        {loading && (
-          <div className="spinner-border spinner-border-sm me-2" role="status">
-            <span className="visually-hidden" />
+        {resumeLoading && (
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              zIndex: 9999,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "not-allowed",
+              pointerEvents: "auto",
+            }}
+          >
+            <div
+              className="spinner-border text-light"
+              style={{ width: "3rem", height: "3rem" }}
+              role="status"
+            >
+              <span className="visually-hidden">Loading...</span>
+            </div>
           </div>
         )}
-        {loading ? "Generating..." : "Generate Resume Feedback"}
+
+        {resumeLoading ? "Generating..." : "Generate Resume Feedback"}
       </button>
 
       <p style={{ paddingTop: "15px" }}>
@@ -69,14 +103,12 @@ const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
         resume uploaded <span style={{ color: "#d9182b" }}>**</span>
       </p>
 
-      {/* Show AI usage below button */}
       {!userLoading && user && (
         <p style={{ marginTop: "10px", color: "#9e9ca1" }}>
           🔁 You have {8 - user.numOfAiRequests} AI requests remaining
         </p>
       )}
 
-      {/* Render resume feedback if available */}
       {feedback && (
         <div
           className="mt-3 p-3 rounded"

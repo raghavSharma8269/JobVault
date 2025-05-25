@@ -62,8 +62,29 @@ const CvComponent: FC<CvComponentProps> = ({ job, onRefreshJobs }) => {
         disabled={loading}
       >
         {loading && (
-          <div className="spinner-border spinner-border-sm me-2" role="status">
-            <span className="visually-hidden" />
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              zIndex: 9999,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "not-allowed",
+              pointerEvents: "auto",
+            }}
+          >
+            <div
+              className="spinner-border default-text-color"
+              style={{ width: "3rem", height: "3rem" }}
+              role="status"
+            >
+              <span className="visually-hidden">Loading...</span>
+            </div>
           </div>
         )}
         {loading ? "Generating..." : "Generate Cover Letter"}

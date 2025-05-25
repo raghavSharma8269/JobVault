@@ -18,6 +18,8 @@ const JobsPage = () => {
   const [filter, setFilter] = useState("");
   const [sortBy, setSortBy] = useState("");
 
+  const [resumeLoading, setResumeLoading] = useState(false);
+
   // Fetch jobs
   const fetchJobs = async () => {
     try {
@@ -157,6 +159,8 @@ const JobsPage = () => {
                 updateJobStatus(selectedJobIndex, newStatus)
               }
               refreshJobs={fetchJobs}
+              resumeLoading={resumeLoading}
+              setResumeLoading={setResumeLoading}
             />
           </div>
         </div>

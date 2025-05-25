@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import FavoriteStarComponent from "./ExpandedJobCardComponents/FavoriteStarComponent";
 import OpenJobLinkButtonComponent from "./ExpandedJobCardComponents/OpenJobLinkButtonComponent";
 import SetStatusDropdownComponent from "./ExpandedJobCardComponents/SetStatusDropdownComponent";
@@ -12,6 +12,8 @@ interface ExpandedJobCardProps {
   onToggleFavorite: () => void;
   onUpdateStatus: (status: Job["applicationStatus"]) => void;
   refreshJobs: () => Promise<void>;
+  resumeLoading: boolean;
+  setResumeLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
@@ -20,6 +22,8 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
   onToggleFavorite,
   onUpdateStatus,
   refreshJobs,
+  resumeLoading,
+  setResumeLoading,
 }) => {
   const [activeSection, setActiveSection] = useState<
     "Description" | "CV" | "Resume"
@@ -125,7 +129,13 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
               {activeSection === "CV" && (
                 <CvComponent job={job} onRefreshJobs={refreshJobs} />
               )}
-              {activeSection === "Resume" && <ResumeComponent job={job} />}
+              {activeSection === "Resume" && (
+                <ResumeComponent
+                  job={job}
+                  resumeLoading={resumeLoading}
+                  setResumeLoading={setResumeLoading}
+                />
+              )}
             </div>
           </div>
         </div>
