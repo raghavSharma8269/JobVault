@@ -22,10 +22,7 @@ const ContactPage: React.FC = () => {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/contact",
-        emailData,
-      );
+      await axios.post("http://localhost:8080/api/contact", emailData);
       alert("✅ Email sent successfully!");
     } catch (error: any) {
       console.error("Error sending email:", error);
