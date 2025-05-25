@@ -1,7 +1,5 @@
 package com.example.JobApplicationManager.service.emailVerification;
 
-import com.example.JobApplicationManager.exceptions.EmailVerificationException;
-import com.example.JobApplicationManager.exceptions.ExceptionMessages;
 import com.example.JobApplicationManager.model.entity.CustomUser;
 import com.example.JobApplicationManager.model.repositories.UserRepository;
 import org.slf4j.Logger;
