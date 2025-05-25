@@ -38,8 +38,7 @@ private final GetUserService getUserService;
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody CustomUser user) {
-        String jwtToken = loginService.authenticateAndGenerateToken(user);
-        return ResponseEntity.ok(jwtToken);
+        return loginService.authenticateAndGenerateToken(user);
     }
 
 

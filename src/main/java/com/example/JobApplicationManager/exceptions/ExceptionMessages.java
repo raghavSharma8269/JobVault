@@ -11,7 +11,7 @@ public enum ExceptionMessages {
     PASSWORD_REQUIRED("Password is required"),
     FULL_NAME_REQUIRED("Name is required"),
     EMAIL_IS_ALREADY_IN_USE("This email is already in use"),
-    EMAIL_NOT_FOUND("Could not email"),
+    EMAIL_NOT_FOUND("No user found with this email"),
     INVALID_JWT("Invalid JWT is being used"),
     JOB_TITLE_REQUIRED("Job TITLE is Required"),
     JOB_COMPANY_REQUIRED("Job COMPANY is Required"),

@@ -8,6 +8,7 @@ import com.example.JobApplicationManager.security.JwtUtil;
 import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,7 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
-import javax.security.auth.login.LoginException;
+import org.springframework.security.authentication.BadCredentialsException;
 
 @Service
 public class LoginService {
@@ -28,16 +29,16 @@ public class LoginService {
         this.userRepository = userRepository;
     }
 
-    public String authenticateAndGenerateToken(CustomUser userInput) {
+    public ResponseEntity<String> authenticateAndGenerateToken(CustomUser userInput) {
         logger.info("Authenticating " + userInput.getEmail());
 
         try {
             CustomUser userFromDb = userRepository.findById(userInput.getEmail())
                     .orElseThrow(() -> new EntityNotFoundException(ExceptionMessages.EMAIL_NOT_FOUND.getMessage()));
 
-//            if (!userFromDb.isEmailVerified()) {
-//                throw new EmailVerificationException(ExceptionMessages.EMAIL_NOT_VERIFIED.getMessage());
-//            }
+            if (!userFromDb.isEmailVerified()) {
+                throw new EmailVerificationException(ExceptionMessages.EMAIL_NOT_VERIFIED.getMessage());
+            }
 
             Authentication authentication = manager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -53,10 +54,11 @@ public class LoginService {
             userFromDb.setAuthToken(jwt);
             userRepository.save(userFromDb);
 
-            return jwt;
-        }catch (Exception e){
-            throw new RuntimeException("Username or password is incorrect");
+            return ResponseEntity.ok(jwt);
+
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.status(401).body("Username or password is incorrect.");
         }
     }
-
 }
+
