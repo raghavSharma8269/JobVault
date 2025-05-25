@@ -1,5 +1,6 @@
 package com.example.JobApplicationManager.service.contactService;
 
+import com.example.JobApplicationManager.exceptions.validator.ContactEmailValidation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,9 @@ public class ContactService {
     public ResponseEntity<String> execute(String name, String email, String message) {
 
         logger.info("Received contact request from: " + name + " with email: " + email);
+
+        // Validate input
+        ContactEmailValidation.execute(name, email, message);
 
         try {
             SimpleMailMessage contactMessage = new SimpleMailMessage();
