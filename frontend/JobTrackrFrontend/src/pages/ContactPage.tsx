@@ -13,7 +13,7 @@ const ContactPage: React.FC = () => {
   return (
     <div className="container-fluid vh-100 d-flex align-items-center">
       <div className="row w-100">
-        {/* Left Section - Image and Branding */}
+        {/* Left Section */}
         <div
           className="col-md-6 d-flex flex-column justify-content-start align-items-start text-white ps-5"
           style={{ backgroundColor: "#1c1d26", height: "100vh" }}
@@ -38,7 +38,7 @@ const ContactPage: React.FC = () => {
           />
         </div>
 
-        {/* Right Section - Contact Form */}
+        {/* Right Section */}
         <div
           className="col-md-6 d-flex flex-column justify-content-center align-items-center"
           style={{ backgroundColor: "#292b38", height: "100vh" }}
