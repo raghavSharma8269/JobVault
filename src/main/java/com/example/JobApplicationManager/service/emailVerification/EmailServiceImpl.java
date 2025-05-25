@@ -19,7 +19,7 @@ public class EmailServiceImpl{
     public void sendSimpleMessage(
             String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("JobTrackr <noreply@jobtrackr.com>");
+        message.setFrom("JobVault <noreply@jobvault.com>");
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
