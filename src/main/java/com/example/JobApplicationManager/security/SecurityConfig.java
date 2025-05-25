@@ -48,7 +48,7 @@ public class SecurityConfig {
                             "/api/auth/register",
                                     "/api/auth/login",
                             "/api/auth/verify",
-                            "/api/contact",
+                            "/api/contact/**",
                             "/error"
 
 

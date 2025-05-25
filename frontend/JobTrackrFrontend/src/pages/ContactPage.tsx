@@ -10,6 +10,29 @@ const ContactPage: React.FC = () => {
 
   const navigate = useNavigate();
 
+  const handleSubmitEmail = async () => {
+    const emailData = {
+      name: (document.getElementById("name") as HTMLInputElement).value,
+      email: (document.getElementById("email") as HTMLInputElement).value,
+      message: (document.getElementById("message") as HTMLTextAreaElement)
+        .value,
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(emailData),
+      });
+      alert("Email sent successfully!");
+    } catch (error: any) {
+      console.error("Error sending email:", error);
+      alert(JSON.stringify(error.data.message));
+    }
+  };
+
   return (
     <div className="container-fluid vh-100 d-flex align-items-center">
       <div className="row w-100">
@@ -45,7 +68,7 @@ const ContactPage: React.FC = () => {
         >
           <div className="w-75">
             <h2 className="text-white mb-4 fw-bold">Send Us a Message</h2>
-            <form>
+            <form onSubmit={handleSubmitEmail}>
               <div className="mb-3">
                 <label htmlFor="name" className="form-label text-white">
                   Name
