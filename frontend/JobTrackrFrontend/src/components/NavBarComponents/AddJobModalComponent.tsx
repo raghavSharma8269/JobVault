@@ -29,18 +29,9 @@ const AddJobModalComponent = () => {
 
       alert("Job added successfully!");
       refreshJobs();
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error adding job:", error);
-
-      if (axios.isAxiosError(error) && error.response) {
-        const backendMessage = error.response.data;
-
-        if (backendMessage.message) {
-          alert(backendMessage.message);
-        }
-      } else {
-        alert("An unknown error occurred.");
-      }
+      alert("Failed to add job; please check the URL and try again.");
     }
   };
 
