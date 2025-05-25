@@ -30,7 +30,17 @@ const EmailVerificationPage: React.FC = () => {
           If you don’t see the email, be sure to check your spam or junk folder.
         </p>
         <p className="mt-2" style={{ color: "#9e9ca1" }}>
-          Still no email? You can try registering again or contact support.
+          Still no email?{" "}
+          <i
+            style={{
+              color: "#7400f0",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+            onClick={() => (window.location.href = "/contact")}
+          >
+            Contact Support
+          </i>
         </p>
       </div>
     </div>
