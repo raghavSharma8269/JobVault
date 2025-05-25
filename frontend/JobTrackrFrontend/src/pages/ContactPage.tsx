@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { FormEvent, useEffect } from "react";
 import logo from "../assets/JobTrackr.png";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ContactPage: React.FC = () => {
   //changes tab name
@@ -10,7 +11,9 @@ const ContactPage: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmitEmail = async () => {
+  const handleSubmitEmail = async (event: FormEvent) => {
+    event.preventDefault();
+
     const emailData = {
       name: (document.getElementById("name") as HTMLInputElement).value,
       email: (document.getElementById("email") as HTMLInputElement).value,
@@ -19,17 +22,17 @@ const ContactPage: React.FC = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(emailData),
-      });
-      alert("Email sent successfully!");
+      const response = await axios.post(
+        "http://localhost:8080/api/contact",
+        emailData,
+      );
+      alert("✅ Email sent successfully!");
     } catch (error: any) {
       console.error("Error sending email:", error);
-      alert(JSON.stringify(error.data.message));
+      alert(
+        error?.response?.data?.message ||
+          "❌ Error sending email. Please try again.",
+      );
     }
   };
 
