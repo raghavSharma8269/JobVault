@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/JobTrackr.png";
+import logo from "../../assets/JobVaultLightPurple.svg";
 
 const NotFoundPage: React.FC = () => {
   const navigate = useNavigate();

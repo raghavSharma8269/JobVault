@@ -1,5 +1,5 @@
 import React, { FormEvent, useEffect } from "react";
-import logo from "../assets/JobTrackr.png";
+import logo from "../assets/JobVaultLightPurple.svg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
