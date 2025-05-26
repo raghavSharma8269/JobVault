@@ -1,6 +1,6 @@
 import WelcomePage from "./pages/WelcomePage";
 import MainPage from "./pages/MainPage";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
 import NotFoundPage from "./pages/error/NotFoundPage.tsx";
@@ -19,11 +19,16 @@ function App() {
             </PrivateRoute>
           }
         />
+        {/* Redirect root path to /welcome */}
+        <Route path="/" element={<Navigate to="/welcome" replace />} />
+
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/*" element={<NotFoundPage />} />
         <Route path="/verify" element={<EmailVerificationPage />} />
         <Route path="/verify-status" element={<EmailVerifiedPage />} />
+
+        {/* Redirect to 404 page */}
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
