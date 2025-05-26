@@ -137,6 +137,7 @@ const JobsPage = () => {
             onSort={fetchJobs}
             filter={filter}
             setFilter={setFilter}
+            onFilter={fetchJobs}
           />
           <div className="col-md-4 d-flex justify-content-center align-items-start overflow-hidden">
             <JobListComponent

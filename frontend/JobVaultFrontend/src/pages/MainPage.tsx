@@ -135,11 +135,7 @@ const MainPage = () => {
 
         {/* Right Section - Main Content */}
         <div className="col-md-10 d-flex justify-content-center align-items-center">
-          {activePage === "jobs" ? (
-            <JobsPage />
-          ) : (
-            <SettingsPage closeSettingsPage={() => setActivePage("jobs")} />
-          )}
+          {activePage === "jobs" ? <JobsPage /> : <SettingsPage />}
         </div>
       </div>
     </div>
