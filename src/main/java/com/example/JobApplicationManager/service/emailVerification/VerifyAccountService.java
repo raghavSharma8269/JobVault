@@ -32,12 +32,12 @@ public class VerifyAccountService {
             userRepository.save(customUser);
             return ResponseEntity
                     .status(302)
-                    .header("Location", "http://localhost:5173/verify-status?success=true")
+                    .header("Location", "https://job-vault-livid.vercel.app/verify-status?success=true")
                     .build();        }
         else {
             return ResponseEntity
                     .status(302)
-                    .header("Location", "http://localhost:5173/verify-status?success=false")
+                    .header("Location", "https://job-vault-livid.vercel.app/verify-status?success=false")
                     .build();
         }
 
