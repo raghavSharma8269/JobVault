@@ -76,7 +76,7 @@ public class CreateNewUserService implements Command<CustomUser, String> {
                     customUser.getEmailVerificationToken()
             ));
 
-            emailService.sendSimpleMessage(customUser.getEmail(), "JobTrackr Email Verification",
+            emailService.sendSimpleMessage(customUser.getEmail(), "JobVault Email Verification",
                     "Click the link below to verify your email\n" +
                             "http://https://jobvault-production.up.railway.app/api/auth/verify?emailVerificationToken="+customUser.getEmailVerificationToken()+
                             "\n**Do not reply to this email**\n");
