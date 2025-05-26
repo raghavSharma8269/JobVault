@@ -44,11 +44,15 @@ const UpdateJobModalComponent: React.FC<Props> = ({ job }) => {
           job.applicationStatus === "none" ? null : job.applicationStatus,
       };
 
-      await axios.put(`http://localhost:8080/api/jobs/${job.id}`, updatedJob, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      await axios.put(
+        `${import.meta.env.VITE_API_BASE_URL}/jobs/${job.id}`,
+        updatedJob,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
 
       alert("Job updated successfully!");
       refreshJobs();

@@ -22,7 +22,10 @@ const ContactPage: React.FC = () => {
     };
 
     try {
-      await axios.post("http://localhost:8080/api/contact", emailData);
+      await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/contact`,
+        emailData,
+      );
       alert("✅ Email sent successfully!");
     } catch (error: any) {
       console.error("Error sending email:", error);

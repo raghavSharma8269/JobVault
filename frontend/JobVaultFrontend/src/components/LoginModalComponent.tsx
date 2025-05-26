@@ -22,7 +22,7 @@ const LoginModalComponent: React.FC<LoginModalComponentProps> = ({
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
+        `${import.meta.env.VITE_API_BASE_URL}/auth/login`,
         {
           email,
           password,

@@ -28,7 +28,7 @@ const RegisterModalComponent: React.FC<RegisterModalComponentProps> = ({
     }
 
     try {
-      await axios.post("http://localhost:8080/api/auth/register", {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/register`, {
         fullName,
         email,
         password,

@@ -13,7 +13,7 @@ const DeleteJobIcon: React.FC<Props> = ({ id }) => {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.delete(`http://localhost:8080/api/jobs/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/jobs/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

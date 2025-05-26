@@ -25,7 +25,7 @@ const JobsPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `http://localhost:8080/api/jobs?sortBy=${sortBy}&search=${search}&status=${filter}`,
+        `${import.meta.env.VITE_API_BASE_URL}/jobs?sortBy=${sortBy}&search=${search}&status=${filter}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -84,7 +84,7 @@ const JobsPage = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:8080/api/jobs/favorite/${job.id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/jobs/favorite/${job.id}`,
         null,
         {
           params: { favorite: newFavorite },
@@ -107,12 +107,17 @@ const JobsPage = () => {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.put(`http://localhost:8080/api/jobs/status/${job.id}`, null, {
-        params: newStatus === "none" ? {} : { status: newStatus.toUpperCase() },
-        headers: {
-          Authorization: `Bearer ${token}`,
+      await axios.put(
+        `${import.meta.env.VITE_API_BASE_URL}/jobs/status/${job.id}`,
+        null,
+        {
+          params:
+            newStatus === "none" ? {} : { status: newStatus.toUpperCase() },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
 
       setJobs((prev) =>
         prev.map((j, i) =>

@@ -43,7 +43,7 @@ const ResumeComponent: FC<ResumeComponentProps> = ({
 
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/profile/resume/${job.id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/profile/resume/${job.id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

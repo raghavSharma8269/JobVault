@@ -32,11 +32,14 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   const fetchUser = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:8080/api/auth/user", {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/auth/user`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       setUser(response.data);
     } catch (err) {
       console.error("Failed to fetch user:", err);

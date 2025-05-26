@@ -20,7 +20,7 @@ const SettingsPage: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/profile/resume",
+        `${import.meta.env.VITE_API_BASE_URL}/profile/resume`,
         formData,
         {
           headers: {
@@ -47,7 +47,7 @@ const SettingsPage: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/profile/cv",
+        `${import.meta.env.VITE_API_BASE_URL}/profile/cv`,
         formData,
         {
           headers: {
@@ -101,7 +101,7 @@ const SettingsPage: React.FC = () => {
 
     try {
       const response = await axios.put(
-        "http://localhost:8080/api/profile",
+        `${import.meta.env.VITE_API_BASE_URL}/profile`,
         {
           originalPassword: currentPassword,
           newPassword: newPassword,

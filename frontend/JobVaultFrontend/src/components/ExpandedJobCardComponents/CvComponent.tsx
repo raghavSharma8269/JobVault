@@ -34,7 +34,7 @@ const CvComponent: FC<CvComponentProps> = ({ job, onRefreshJobs }) => {
 
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/profile/cv/${job.id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/profile/cv/${job.id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
