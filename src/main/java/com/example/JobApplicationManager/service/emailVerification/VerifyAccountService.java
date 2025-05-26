@@ -29,6 +29,7 @@ public class VerifyAccountService {
         if(optionalCustomUser.isPresent()){
             CustomUser customUser = optionalCustomUser.get();
             customUser.setEmailVerified(true);
+            customUser.setEmailVerificationToken(null); // Clear the token after verification
             userRepository.save(customUser);
             return ResponseEntity
                     .status(302)
