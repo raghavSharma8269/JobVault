@@ -3,10 +3,30 @@ import logo from "../assets/JobVaultLightPurple.svg";
 import LoginModalComponent from "../components/LoginModalComponent";
 import RegisterModalComponent from "../components/RegisterModalComponent";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const WelcomePage: React.FC = () => {
+  // checks to see if the user is already logged in/has valid jwt in localStorage
   useEffect(() => {
     document.title = "JobVault";
+
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      axios
+        // Check if the token is valid by making a request to the user endpoint to get user info
+        .get(`${import.meta.env.VITE_API_BASE_URL}/auth/user`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then(() => {
+          // If token is valid the call will succeed verifying the token, and we can redirect to the dashboard
+          navigate("/dashboard"); // or home
+        })
+        .catch(() => {
+          // If token is invalid, remove it and do nothing
+          localStorage.removeItem("token");
+        });
+    }
   }, []);
 
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
