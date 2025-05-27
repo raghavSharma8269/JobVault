@@ -52,9 +52,9 @@ const ResumeComponent: FC<ResumeComponentProps> = ({
       );
       setFeedback(response.data);
       await refreshUser();
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error generating resume feedback:", error);
-      alert("Failed to generate resume feedback");
+      alert(error.response.data.message);
     } finally {
       setResumeLoading(false);
     }

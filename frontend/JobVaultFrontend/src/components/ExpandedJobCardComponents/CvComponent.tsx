@@ -45,9 +45,9 @@ const CvComponent: FC<CvComponentProps> = ({ job, onRefreshJobs }) => {
       setFeedback(response.data); // display immediately
       await refreshUser(); // update request count
       await onRefreshJobs(); // refresh jobs to get updated feedback
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error generating cover letter:", error);
-      alert("Failed to generate cover letter");
+      alert(error.response.data.message);
     } finally {
       setLoading(false);
     }
