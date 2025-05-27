@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ResetSearchParametersIconComponent from "../ResetSearchParametersIconComponent.tsx";
 import FilterDropDownButtonComponent from "./FilterDropDownButtonComponent.tsx";
 
 interface FilterItemsComponentsProps {

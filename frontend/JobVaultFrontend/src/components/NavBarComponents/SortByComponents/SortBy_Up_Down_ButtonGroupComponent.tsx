@@ -1,7 +1,6 @@
 import React from "react";
 import SortDownIconComponent from "./SortDownIconComponent.tsx";
 import SortUpIconComponent from "./SortUpIconComponent.tsx";
-import FilterItemsComponents from "../FilterComponents/FilterItemsComponents.tsx";
 
 interface SortBy_Up_Down_ButtonGroupComponentProps {
   filter: string;
@@ -11,7 +10,7 @@ interface SortBy_Up_Down_ButtonGroupComponentProps {
 
 const SortBy_Up_Down_ButtonGroupComponent: React.FC<
   SortBy_Up_Down_ButtonGroupComponentProps
-> = ({ filter, setFilter, onFilter }) => {
+> = () => {
   return (
     <div
       className="btn-group"

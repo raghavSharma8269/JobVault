@@ -15,7 +15,7 @@ const AddJobModalComponent = () => {
       };
 
       await axios.post(
-        `http://localhost:8080/api/jobs/create?url=${encodeURIComponent(request.jobUrl)}`,
+        `${import.meta.env.VITE_API_BASE_URL}/jobs/create?url=${encodeURIComponent(request.jobUrl)}`,
         {},
         {
           headers: {

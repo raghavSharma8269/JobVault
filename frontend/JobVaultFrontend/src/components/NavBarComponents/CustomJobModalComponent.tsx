@@ -29,7 +29,7 @@ const CustomJobModalComponent = () => {
       };
 
       await axios.post(
-        "http://localhost:8080/api/jobs/create/custom",
+        `${import.meta.env.VITE_API_BASE_URL}/jobs/create/custom`,
         jobData,
         {
           headers: {

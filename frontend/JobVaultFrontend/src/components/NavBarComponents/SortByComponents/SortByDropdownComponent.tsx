@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SortBy_Up_Down_ButtonGroupComponent from "./SortBy_Up_Down_ButtonGroupComponent.tsx";
 import SortByDropdownButtonComponent from "./SortByDropdownButtonComponent.tsx";
 
 interface SortByDropdownComponentProps {
@@ -14,9 +13,6 @@ interface SortByDropdownComponentProps {
 const SortByDropdownComponent: React.FC<SortByDropdownComponentProps> = ({
   setSortBy,
   onSort,
-  filter,
-  setFilter,
-  onFilter,
 }) => {
   const [activeSection, setActiveSection] = useState<
     "companyName" | "jobTitle" | "dateAdded" | "favorites" | "none"
