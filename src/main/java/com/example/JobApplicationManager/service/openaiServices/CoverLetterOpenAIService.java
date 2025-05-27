@@ -105,45 +105,31 @@ public class CoverLetterOpenAIService {
         logger.info("Executing " + getClass() + " Job Title: " + jobTitle + " || Company Name: " + companyName);
 
         String prompt =
-                "You are a senior career coach and expert cover letter writer helping a job candidate tailor a compelling and effective cover letter for a specific job. Use the following inputs:\n" +
-                        "\n" +
-                        "- Resume:\n" +
-                        "{resume}\n" +
-                        "\n" +
-                        "- Job Title:\n" +
-                        "{jobTitle}\n" +
-                        "\n" +
-                        "- Job Description:\n" +
-                        "{jobDescription}\n" +
-                        "\n" +
-                        "- Company Name:\n" +
-                        "{companyName}\n" +
-                        "\n" +
-                        "- Existing Cover Letter (if any):\n" +
-                        "{coverLetter}\n" +
-                        "\n" +
-                        "Follow the structure below exactly. Do not skip or reword this format. The entire cover letter must follow this layout and tone:\n" +
-                        "\n" +
-                        "Dear (contact),\n" +
-                        "\n" +
-                        "(Brief sentence introducing yourself). (How you found out about the position). (Overview of why you're interested and how you can contribute).\n" +
-                        "\n" +
-                        "(1–2 paragraphs of relevant background information from the resume and projects. Frame this as a narrative that explains what led the candidate to this point and why this role is the natural next step. Mention relevant coursework only if it directly supports the job.)\n" +
-                        "\n" +
-                        "(Briefly reinforce your interest in the company or role). (Briefly restate why you’re a good fit for the position). (Politely encourage a response or mention when you will follow up.)\n" +
-                        "\n" +
-                        "Kind regards,\n" +
-                        "\n" +
-                        "(Self)\n" +
-                        "\n" +
+                "You are a senior career coach and expert cover letter writer helping a job candidate tailor a compelling and effective cover letter for a specific job. Use the following inputs:\n\n" +
+
+                        "- Resume:\n" + resume + "\n\n" +
+                        "- Job Title:\n" + jobTitle + "\n\n" +
+                        "- Job Description:\n" + jobDescription + "\n\n" +
+                        "- Company Name:\n" + companyName + "\n\n" +
+                        "- Existing Cover Letter (if any):\n" + coverLetter + "\n\n" +
+
+                        "Follow the structure below exactly. Do not skip or reword this format. The entire cover letter must follow this layout and tone:\n\n" +
+
+                        "Dear (contact),\n\n" +
+                        "(Brief sentence introducing yourself). (How you found out about the position). (Overview of why you're interested and how you can contribute).\n\n" +
+                        "(1–2 paragraphs of relevant background information from the resume and projects. Frame this as a narrative that explains what led the candidate to this point and why this role is the natural next step. Mention relevant coursework only if it directly supports the job.)\n\n" +
+                        "(Briefly reinforce your interest in the company or role). (Briefly restate why you're a good fit for the position). (Politely encourage a response or mention when you will follow up.)\n\n" +
+                        "Kind regards,\n\n" +
+                        "(Self)\n\n" +
+
                         "Formatting:\n" +
                         "- Output only the final cover letter — no explanation or commentary.\n" +
                         "- Use clear, professional language.\n" +
                         "- Do not include markdown, bullet points, or code blocks.\n" +
-                        "- Do not invent skills or experience not in the resume.\n" +
-                        "\n" +
+                        "- Do not invent skills or experience not in the resume.\n\n" +
+
                         "Output:\n" +
-                        "Return the completed, tailored cover letter as HTML code. Use proper formatting with HTML tags (e.g. <p> for paragraphs, <br> where needed). Do not include markdown, plain text, or code blocks. Return only the HTML.\n";
+                        "Return the completed, tailored cover letter as HTML code. Use proper formatting with HTML tags (e.g. <p> for paragraphs, <br> where needed). Do not include markdown, plain text, or code blocks. Return only the HTML.";
 
 
         List<Map<String, String>> messages = new ArrayList<>();
