@@ -51,6 +51,7 @@ private final ResendEmailVerificationService resendEmailVerificationService;
     }
 
     @GetMapping("/resend-verification")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<String> resendEmailVerification(@RequestParam String email) {
         return resendEmailVerificationService.execute(email);
     }
