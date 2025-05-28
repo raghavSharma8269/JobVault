@@ -3,6 +3,7 @@ package com.example.JobApplicationManager.controller;
 import com.example.JobApplicationManager.model.entity.CustomUser;
 import com.example.JobApplicationManager.service.authServices.CreateNewUserService;
 import com.example.JobApplicationManager.service.authServices.LoginService;
+import com.example.JobApplicationManager.service.emailVerification.ResendEmailVerificationService;
 import com.example.JobApplicationManager.service.emailVerification.VerifyAccountService;
 import com.example.JobApplicationManager.service.userServices.GetUserService;
 import jakarta.mail.MessagingException;
@@ -19,16 +20,18 @@ private final CreateNewUserService createNewUserService;
 private final LoginService loginService;
 private final VerifyAccountService verifyAccountService;
 private final GetUserService getUserService;
+private final ResendEmailVerificationService resendEmailVerificationService;
 
     public UserController(
             CreateNewUserService createNewUserService,
             LoginService loginService, VerifyAccountService verifyAccountService,
-            GetUserService getUserService
+            GetUserService getUserService, ResendEmailVerificationService resendEmailVerificationService
     ) {
         this.createNewUserService = createNewUserService;
         this.loginService = loginService;
         this.verifyAccountService = verifyAccountService;
         this.getUserService = getUserService;
+        this.resendEmailVerificationService = resendEmailVerificationService;
     }
 
     @PostMapping("/register")
@@ -47,10 +50,14 @@ private final GetUserService getUserService;
         return verifyAccountService.execute(emailVerificationToken);
     }
 
+    @GetMapping("/resend-verification")
+    public ResponseEntity<String> resendEmailVerification(@RequestParam String email) {
+        return resendEmailVerificationService.execute(email);
+    }
+
     @GetMapping("/user")
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     public ResponseEntity<CustomUser> getUser() {
         return getUserService.execute();
     }
-
 }
