@@ -1,72 +1,97 @@
-# JobTrackr
+# 📋 JobVault
 
-JobTrackr is a web application designed to help users track their job applications. It includes features for uploading resumes and cover letters, changing passwords, and managing job listings.
+> A comprehensive web application to streamline your job search with intelligent application tracking and AI-powered resume feedback.
 
-## Technologies Used
+## ✨ Features
 
-- **Backend**: Java, Spring Boot, Maven
-- **Frontend**: TypeScript, JavaScript, React, npm
+- **Job Application Tracking** - Organize and monitor all your job applications in one place
+- **LinkedIn Integration** - Easily import job postings directly from LinkedIn
+- **AI Resume Feedback** - Get tailored suggestions to improve your resume/CV
+- **Email Verification** - Secure account management with email confirmation
+- **Custom Applications** - Add your own job applications manually
 
-## Getting Started
+## 🛠️ Tech Stack
+
+| Component | Technology |
+|-----------|------------|
+| **Backend** | Java 17, Spring Boot, Maven |
+| **Frontend** | TypeScript, React + Vite, npm |
+
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Java 17
-- Maven
-- Node.js and npm
+Ensure you have the following installed:
+- ☕ Java 17 or higher
+- 📦 Maven
+- 🟢 Node.js and npm
 
-### Backend Setup
+### 🔧 Backend Setup
 
-1. Navigate to the `root` directory:
-    ```sh
-    cd JobApplicationManager
-    ```
+1. **Navigate to project root**
+   ```bash
+   cd JobVault
+   ```
 
-2. Build the project using Maven:
-    ```sh
-    mvn clean install
-    ```
+2. **Build the project**
+   ```bash
+   mvn clean install
+   ```
 
-3. Run the Spring Boot application:
-    ```sh
-    mvn spring-boot:run
-    ```
+3. **Start the Spring Boot server**
+   ```bash
+   mvn spring-boot:run
+   ```
 
-### Frontend Setup
+### 🎨 Frontend Setup
 
-1. Navigate to the `frontend/JobTrackrFrontend` directory:
-    ```sh
-    cd frontend/JobTrackrFrontend
-    ```
+1. **Navigate to frontend directory**
+   ```bash
+   cd frontend/JobVaultFrontend
+   ```
 
-2. Install the dependencies:
-    ```sh
-    npm install
-    ```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-3. Start the React application:
-    ```sh
-    npm start
-    ```
+3. **Start the development server**
+   ```bash
+   npm start
+   ```
 
-## Usage
+## 🌐 Getting Started
 
-- Use postman to send api requests 
+1. **Access the application** at `http://localhost:5173`
+2. **Create an account** and verify your email
+3. **Login** to your dashboard
+4. **Add job applications** via LinkedIn import or manual entry
 
-- ****!!!FRONT END WIP!!!****
-- **Jobs Page**: View and manage your job applications. Receive feedback on your resume/cv
-- **Settings Page**: Upload resumes and cover letters, and change your password.
+### 💡 LinkedIn Integration Tip
 
+When importing from LinkedIn, copy the job URL from the **"Share on LinkedIn"** button, not the browser address bar.
 
-## Screenshots
+![LinkedIn Import Guide](screenshots/how_to_copy_from_linkedin.png)
+
+## 📸 Screenshots
+
+<div align="center">
 
 ### 👋 Welcome Page
-![Welcome Page Screenshot](./screenshots/welcome_page.png)
+![Welcome Page](./screenshots/welcome_page.png)
 
-### 🖼 Jobs Page
-![Jobs Page Screenshot](./screenshots/jobs_page.png)
+### 📊 Jobs Dashboard
+![Jobs Page](./screenshots/jobs_page.png)
 
-### ⚙️ Settings Page
-![Settings Page Screenshot](./screenshots/settings_page.png)
+### ⚙️ Settings Panel
+![Settings Page](./screenshots/settings_page.png)
+
+</div>
+
+## ❓ Have Questions?
+
+Need help getting started or have feedback? We'd love to hear from you!
+
+**[📧 Contact Us](https://job-vault-livid.vercel.app/contact)**
 
 
