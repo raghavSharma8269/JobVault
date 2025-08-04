@@ -41,7 +41,9 @@ const UpdateJobModalComponent: React.FC<Props> = ({ job }) => {
         jobSalary,
         favorite: job.favorite,
         applicationStatus:
-          job.applicationStatus === "none" ? null : job.applicationStatus,
+          job.applicationStatus === "none"
+            ? null
+            : job.applicationStatus.toUpperCase(),
       };
 
       await axios.put(
